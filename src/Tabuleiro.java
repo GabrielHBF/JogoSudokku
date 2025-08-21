@@ -32,6 +32,8 @@ public class Tabuleiro {
             }
         }
     }
+
+    //entrada de dados do usuario verifica se esses numero ja estao colocados ou se sao os nao subistituiveis
     public void setTabuleiro(int indiceLinha, int indiceColuna,int valorAsubstituir ) {
 
         if(ValoresFixos[indiceLinha][indiceColuna] == valorAsubstituir) {
@@ -51,7 +53,9 @@ public class Tabuleiro {
             int numeroColuna = random.nextInt(9);
             int valorAsubstituir = random.nextInt(9) + 1;
 
-            if(ValidarTabuleiro(numeroLinha,numeroColuna,valorAsubstituir)) {
+    //chama o metodo para verificar os numero e cria uma copia do array
+
+            if(!(ValidarTabuleiro(numeroLinha,numeroColuna,valorAsubstituir))) {
                 this.tabuleiro[numeroLinha][numeroColuna] = valorAsubstituir;
                 for (int cont = 0; cont < 9; cont++) {
                     System.arraycopy(this.tabuleiro[cont], 0, this.ValoresFixos[cont], 0, 9);
@@ -59,17 +63,95 @@ public class Tabuleiro {
             }
         }
     }
+//metodo para verificar se o numero esta na linha ou coluna se estiver ele retorna true
 
-        private boolean ValidarTabuleiro (int linha,int coluna, int numero){
+       private boolean ValidarTabuleiro (int linha,int coluna, int numero){
             for (int i = 0; i < 9; i++) {
-                    if (this.tabuleiro[linha][i] == numero && this.tabuleiro[i][coluna] == numero) {
-                        return false;
-                    }else {
+                    if (this.tabuleiro[linha][i] == numero || this.tabuleiro[i][coluna] == numero) {
                         return true;
+                    }else {
+                        return false;
                 }
             }
             return true;
         }
+
+    private boolean validarBloco(int linha, int coluna, int numero){
+        boolean verdadeiro;
+        switch (linha) {
+            case 0,1,2 : switch (coluna) {
+                             case 0,1,2 :
+                                 int i = 3;
+                                 for (int  j  = 0; j < i; i++) {
+                                     if (this.tabuleiro[linha][i] == numero || this.tabuleiro[i][coluna] == numero) {
+                                         verdadeiro = true;
+                                     }
+                                 }
+                             case 3,4,5 :
+                                 int ii = 6;
+                                 for (int j = 3 ;j < ii; ii++) {
+                                     if (this.tabuleiro[linha][ii] == numero || this.tabuleiro[ii][coluna] == numero) {
+                                         verdadeiro = true;
+                                     }
+                                 }
+                                case 6,7,8:
+                                    int iii = 9;
+                                    for (int j = 6 ;j < iii; iii++) {
+                                        if (this.tabuleiro[linha][iii] == numero || this.tabuleiro[iii][coluna] == numero) {
+                                            verdadeiro = true;
+                                        }
+                                    }
+            }
+            case 3,4,5 : switch (coluna) {
+                         case 0,1,2 :
+                             int i = 3;
+                             for (int  j  = 0; j < i; i++) {
+                                 if (this.tabuleiro[linha][i] == numero || this.tabuleiro[i][coluna] == numero) {
+                                     verdadeiro = true;
+                                 }
+                             }
+                            case 3,4,5 :
+                                int ii = 6;
+                                for (int j = 3 ;j < ii; ii++) {
+                                    if (this.tabuleiro[linha][ii] == numero || this.tabuleiro[ii][coluna] == numero) {
+                                        verdadeiro = true;
+                                    }
+                                }
+                               case 6,7,8:
+                                   int iii = 9;
+                                   for (int j = 6 ;j < iii; iii++) {
+                                       if (this.tabuleiro[linha][iii] == numero || this.tabuleiro[iii][coluna] == numero) {
+                                           verdadeiro = true;
+                                       }
+                                   }
+            }
+            case 6,7,8 : switch (coluna) {
+                case 0,1,2 :
+                    int i = 3;
+                    for (int  j  = 0; j < i; i++) {
+                        if (this.tabuleiro[linha][i] == numero || this.tabuleiro[i][coluna] == numero) {
+                            verdadeiro = true;
+                        }
+                    }
+                case 3,4,5 :
+                    int ii = 6;
+                    for (int j = 3 ;j < ii; ii++) {
+                        if (this.tabuleiro[linha][ii] == numero || this.tabuleiro[ii][coluna] == numero) {
+                            verdadeiro = true;
+                        }
+                    }
+                case 6,7,8:
+                    int iii = 9;
+                    for (int j = 6 ;j < iii; iii++) {
+                        if (this.tabuleiro[linha][iii] == numero || this.tabuleiro[iii][coluna] == numero) {
+                            verdadeiro = true;
+                        }
+                    }
+            }
+        }
+
+    return  true;
     }
+}
 
 

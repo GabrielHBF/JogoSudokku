@@ -33,16 +33,17 @@ public class Tabuleiro {
         }
     }
     public void setTabuleiro(int indiceLinha, int indiceColuna,int valorAsubstituir ) {
+
         if(ValoresFixos[indiceLinha][indiceColuna] == valorAsubstituir) {
             System.out.println("Esse Valor Não Pode ser Substituidor");
-        }else if(ValidarTabuleiro(valorAsubstituir)){
+        }else if(ValidarTabuleiro(indiceLinha,indiceColuna,valorAsubstituir)){
             this.tabuleiro[indiceLinha][indiceColuna] = valorAsubstituir;
         }else {
             System.out.println("Esse Valor Não Pode ser inserido verifique a linha e coluna");
         }
     }
     //Adiciona Numeros ao Tabuleiro
-    private int[][] AleatorioTabuleiro() {
+    private void AleatorioTabuleiro() {
 
         Random random = new Random();
         for (int i = 0; i < tabuleiro.length; i++) {
@@ -50,22 +51,21 @@ public class Tabuleiro {
             int numeroColuna = random.nextInt(9);
             int valorAsubstituir = random.nextInt(9) + 1;
 
-            if(ValidarTabuleiro(valorAsubstituir())) {
+            if(ValidarTabuleiro(numeroLinha,numeroColuna,valorAsubstituir)) {
                 this.tabuleiro[numeroLinha][numeroColuna] = valorAsubstituir;
                 for (int cont = 0; cont < 9; cont++) {
                     System.arraycopy(this.tabuleiro[cont], 0, this.ValoresFixos[cont], 0, 9);
                 }
             }
         }
-        return this.tabuleiro;
     }
 
         private boolean ValidarTabuleiro (int linha,int coluna, int numero){
             for (int i = 0; i < 9; i++) {
-                    if (this.tabuleiro[linha][i] == numero && this.tabuleiro[i][coluna] == linha) {
-                        return true;
-                    }else {
+                    if (this.tabuleiro[linha][i] == numero && this.tabuleiro[i][coluna] == numero) {
                         return false;
+                    }else {
+                        return true;
                 }
             }
             return true;
